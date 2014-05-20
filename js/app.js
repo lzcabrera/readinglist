@@ -1,11 +1,11 @@
 App = Ember.Application.create();
 
+// route
 App.Router.map(function() {
   // put your routes here
   this.resource('book', {path: 'books/:book_id'});
   this.resource('genre', { path: '/genres/:genre_id'});
 });
-
 App.IndexRoute = Ember.Route.extend({
   model: function() {
     return Ember.RSVP.hash({
@@ -17,9 +17,14 @@ App.IndexRoute = Ember.Route.extend({
     controller.set('books', model.books);
     controller.set('genres', model.genres);
   }
-
+});
+App.BookRoute = Ember.Route.extend({
+  model: function(params) {
+    return this.store.find('book', params.book_id);
+  }
 });
 
+// controller
 App.IndexController = Ember.Controller.extend({});
 
 App.BooksController = Ember.ArrayController.extend({
@@ -31,6 +36,7 @@ App.GenresController = Ember.ArrayController.extend({
 App.GenreController = Ember.Controller.extend({
 });
 
+// component
 App.BookDetailsComponent = Ember.Component.extend({
   classNameBindings: ['ratingClass'],
   ratingClass: function() {
@@ -38,9 +44,9 @@ App.BookDetailsComponent = Ember.Component.extend({
   }.property('book.rating')
 });
 
+// data
 App.ApplicationAdapter = DS.FixtureAdapter.extend({
 });
-
 
 App.Book = DS.Model.extend({
   title: DS.attr(),
@@ -56,7 +62,6 @@ App.Book = DS.Model.extend({
     return "http://images.amazon.com/images/P/"+this.get('amazon_id')+".01.ZTZZZZZZ.jpg";
   }.property('amazon_id')
 });
-
 App.Book.FIXTURES = [
   {
     id: 1,
@@ -91,7 +96,6 @@ App.Genre = DS.Model.extend({
   name: DS.attr(),
   books: DS.hasMany('book')
 });
-
 App.Genre.FIXTURES = [
   {
     id: 1,
