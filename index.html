@@ -30,6 +30,7 @@
 
   </script>
 
+  <!-- book -->
   <script type="text/x-handlebars" data-template-name="books">
 
     <ul class="list-unstyled">
@@ -49,6 +50,16 @@
     {{book-details book=this tag='div' class='row' rating="4"}}
   </script>
 
+  <!-- genre -->
+  <script type="text/x-handlebars" data-template-name="genres">
+    <ul class="list-unstyled">
+      {{#each}}
+        <li>{{#link-to 'genre' this class='label label-primary'}}{{name}}{{/link-to}}</li>
+      {{/each}}
+    </ul>
+  </script>
+
+  <!-- components -->
   <script type="text/x-handlebars" data-template-name="components/book-details">
       <div class="col-sm-3">
         <a {{bind-attr href='book.url'}}>
@@ -67,13 +78,8 @@
 
   </script>
 
-  <script type="text/x-handlebars" data-template-name="genres">
-    <ul class="list-unstyled">
-      {{#each}}
-        <li>{{#link-to 'genre' this class='label label-primary'}}{{name}}{{/link-to}}</li>
-      {{/each}}
-    </ul>
-  </script>
+
+
 
 
   <script src="js/libs/jquery-1.10.2.js"></script>
