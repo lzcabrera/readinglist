@@ -18,11 +18,6 @@ App.IndexRoute = Ember.Route.extend({
     controller.set('genres', model.genres);
   }
 });
-App.BookRoute = Ember.Route.extend({
-  model: function(params) {
-    return this.store.find('book', params.book_id);
-  }
-});
 
 // controller
 App.IndexController = Ember.Controller.extend({});
