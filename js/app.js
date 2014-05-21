@@ -20,7 +20,10 @@ App.IndexRoute = Ember.Route.extend({
 });
 
 // controller
-App.IndexController = Ember.Controller.extend({});
+
+// be more explicit about what the controller is now that we are not using the default index route
+App.IndexController = Ember.Controller.extend({
+});
 
 App.BooksController = Ember.ArrayController.extend({
   sortProperties: ['title']
@@ -28,8 +31,7 @@ App.BooksController = Ember.ArrayController.extend({
 App.GenresController = Ember.ArrayController.extend({
   sortProperties: ['name']
 });
-App.GenreController = Ember.Controller.extend({
-});
+
 
 // component
 App.BookDetailsComponent = Ember.Component.extend({
@@ -89,7 +91,7 @@ App.Book.FIXTURES = [
 
 App.Genre = DS.Model.extend({
   name: DS.attr(),
-  books: DS.hasMany('book')
+  books: DS.hasMany('book', {async: true})
 });
 App.Genre.FIXTURES = [
   {

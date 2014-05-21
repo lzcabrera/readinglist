@@ -21,9 +21,11 @@
 
     <div class='row'>
       <div class='col-sm-8'>
+        <h2>Books</h2>
         {{render 'books' books}}
       </div>
       <div class='col-sm-4'>
+        <h2>Genres</h2>
         {{render 'genres' genres}}
       </div>
     </div>
@@ -57,6 +59,14 @@
         <li>{{#link-to 'genre' this class='label label-primary'}}{{name}}{{/link-to}}</li>
       {{/each}}
     </ul>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="genre">
+    <ol class="breadcrumb">
+      <li>{{#link-to 'index'}}Books{{/link-to}}</li>
+      <li class="active">{{name}}</li>
+    </ol>
+    {{render 'books' books}}
   </script>
 
   <!-- components -->
