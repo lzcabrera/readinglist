@@ -47,10 +47,13 @@ App.Book = DS.Model.extend({
   price: DS.attr(),
   rating: DS.attr('number'),
   genre: DS.belongsTo('genre'),
-  amazon_id: DS.attr(),
+  image_src: DS.attr(),
+  url: function(){
+    return "http://amazon.com/gp/product/"+this.get('image_src')+"/lzcabrera";
+  }.property('image_src'),
   image: function(){
-    return "images/"+this.get('amazon_id');
-  }.property('amazon_id')
+    return "images/"+this.get('image_src');
+  }.property('image_src')
 });
 
 var i = 0;
@@ -61,7 +64,7 @@ App.Book.FIXTURES = [
     SKU: 'Delivering Happiness',
     price: 'Interesting read on how important it is to build and invest in fostering a company culture',
     genre: 1,
-    amazon_id: '22775084_040_b.jpg'
+    image_src: '22775084_040_b.jpg'
   }
 ];
 
