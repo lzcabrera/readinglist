@@ -2,21 +2,21 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Laura Reading List</title>
+  <title>Online Store</title>
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <script type="text/x-handlebars" data-template-name="application">
     <div class="container">
-      <h1>Reading List</h1>
+      <h1>Online Store</h1>
       {{outlet}}
     </div>
   </script>
 
   <script type="text/x-handlebars" data-template-name="index">
     <ol class="breadcrumb">
-      <li>{{#link-to 'index'}}Books{{/link-to}}</li>
+      <li>{{#link-to 'index'}}Products{{/link-to}}</li>
     </ol>
 
     <div class='row'>
@@ -44,9 +44,8 @@
   <script type="text/x-handlebars" data-template-name="book">
     <ol class="breadcrumb">
       <li>{{#link-to 'index'}}Books{{/link-to}}</li>
-      <li class="active">{{title}}</li>
+      <li class="active">{{SKU}}</li>
     </ol>
-    {{book-details book=this tag='div' class='row' rating="4"}}
   </script>
 
   <script type="text/x-handlebars" data-template-name="components/book-details">
@@ -54,13 +53,11 @@
         <a {{bind-attr href='book.url'}}>
           <img {{bind-attr src='book.image'}}/>
         </a>
-        <p class="text-center rating"><strong>{{book.rating}}</strong>/5</p>
       </div>
       <div class="col-sm-9">
-        <h3>{{#link-to 'book' book}}{{book.title}}{{/link-to}}</h3>
-        <p class='text-muted'><em>Written by {{book.author}}</em></p>
+        <h3>{{#link-to 'book' book}}{{book.SKU}}{{/link-to}}</h3>
         <div>
-          <p>{{book.review}}</p>
+          <p>{{book.price}}</p>
         </div>
         <span>{{#link-to 'genre' book.genre class='label label-primary'}}{{book.genre.name}}{{/link-to}}</span>
       </div>

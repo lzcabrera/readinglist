@@ -23,7 +23,7 @@ App.IndexRoute = Ember.Route.extend({
 App.IndexController = Ember.Controller.extend({});
 
 App.BooksController = Ember.ArrayController.extend({
-  sortProperties: ['title']
+  sortProperties: ['SKU']
 });
 App.GenresController = Ember.ArrayController.extend({
   sortProperties: ['name']
@@ -31,21 +31,21 @@ App.GenresController = Ember.ArrayController.extend({
 App.GenreController = Ember.Controller.extend({
 });
 
-App.BookDetailsComponent = Ember.Component.extend({
-  classNameBindings: ['ratingClass'],
-  ratingClass: function() {
-    return "rating-" + this.get('book.rating');
-  }.property('book.rating')
-});
+// App.BookDetailsComponent = Ember.Component.extend({
+//   classNameBindings: ['ratingClass'],
+//   ratingClass: function() {
+//     return "rating-" + this.get('book.rating');
+//   }.property('book.rating')
+// });
 
 App.ApplicationAdapter = DS.FixtureAdapter.extend({
 });
 
 
 App.Book = DS.Model.extend({
-  title: DS.attr(),
+  SKU: DS.attr(),
   author: DS.attr(),
-  review: DS.attr(),
+  price: DS.attr(),
   rating: DS.attr('number'),
   genre: DS.belongsTo('genre'),
   amazon_id: DS.attr(),
@@ -53,37 +53,20 @@ App.Book = DS.Model.extend({
     return "http://amazon.com/gp/product/"+this.get('amazon_id')+"/lzcabrera";
   }.property('amazon_id'),
   image: function(){
-    return "http://images.amazon.com/images/P/"+this.get('amazon_id')+".01.ZTZZZZZZ.jpg";
+    return "images/"+this.get('amazon_id');
   }.property('amazon_id')
 });
 
+var i = 0;
+
 App.Book.FIXTURES = [
   {
-    id: 1,
-    title: 'Delivering Happiness',
+    id: i++,
+    SKU: 'Delivering Happiness',
     author: 'Tony Hsieh',
-    review: 'Interesting read on how important it is to build and invest in fostering a company culture',
-    rating: 5,
+    price: 'Interesting read on how important it is to build and invest in fostering a company culture',
     genre: 1,
-    amazon_id: 'B003JTHXN6'
-  },
-  {
-    id: 2,
-    title: 'Without their Permission',
-    author: 'Alexis Onihana',
-    review: 'Great read on startups and enterprenuership',
-    rating: 5,
-    genre: 1,
-    amazon_id: 'B00BAXFJ16'
-  },
-  {
-    id: 3,
-    title: 'The Kite Runner',
-    author: '',
-    review: 'I couldn\'t put the book down as soon as I started reading it.',
-    rating: 4,
-    genre: 2,
-    amazon_id: 'B0031TZB3I'
+    amazon_id: '22775084_040_b.jpg'
   }
 ];
 
